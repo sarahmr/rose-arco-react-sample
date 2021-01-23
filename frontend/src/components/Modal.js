@@ -66,6 +66,35 @@
                     Completed
                   </Label>
                 </FormGroup>
+                <FormGroup>
+                  <Label for="priority">
+                    <select
+                      name="priority"
+                      value={this.state.activeItem.priority}
+                      onChange={this.handleChange}
+                      >
+                      <option value="low">
+                        Low
+                      </option>
+                      <option value="med">
+                        Med
+                      </option>
+                      <option value="high">
+                        High
+                      </option>
+                    </select>
+                  </Label>
+                </FormGroup>
+                <FormGroup>
+                  <Label for="deadline">
+                    <input
+                      type="date"
+                      name="due_date"
+                      value={this.state.activeItem.due_date || this.props.activeItem.due_date}
+                      onChange={this.handleChange}
+                    />
+                  </Label>
+                </FormGroup>
               </Form>
             </ModalBody>
             <ModalFooter>
