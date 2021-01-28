@@ -1,3 +1,29 @@
+<!-- A) Display "Due Date" attribute in the list for each todo item -->
+<!-- B) Display "Priority" attribute in the list for each todo item -->
+
+<!-- C) Include "Due Date" and "Priority" in the edit and create modal, ensure that they can will be entered correctly and provide the user with accurate feedback 
+
+      i have questions about how part c is implemented best-->
+
+<!-- D) Include headers in the list of items -->
+
+E) After including headers, ensure that headers stay 'fixed' in the frame when scrolling down through items 
+  -- having trouble with this
+  -- make inner container scrollable?
+
+F) highlight rows in red that are past due
+
+G) update 'completed_time' in the db when marking a todo complete
+
+H) include orderable column headers - when clicked once, list is now ordered by the attribute corresponding to the header. When click twiced, the header reverses the order
+
+I) Have the application fill the entire screen
+
+J) Style the list of Tasks to appear more like a table and include line numbers (1, 2, 3 for each task)
+
+<!-- K) Create new button “all” (next to “complete” / “Incomplete”) and related functionality to display all Tasks -->
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

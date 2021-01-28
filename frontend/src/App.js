@@ -16,7 +16,8 @@ class App extends Component {
         priority: '',
         due_date: ''
       },
-      todoList: []
+      todoList: [],
+      viewAll: false
     };
   }
 
@@ -33,35 +34,72 @@ class App extends Component {
 
   displayCompleted = status => {
     if (status) {
-      return this.setState({ viewCompleted: true });
+      return this.setState({ viewCompleted: true, viewAll: false });
     }
-    return this.setState({ viewCompleted: false });
+    return this.setState({ viewCompleted: false, viewAll: false });
   };
+
+  displayAll = () => {
+    this.setState({
+      viewAll: true
+    })
+  }
 
   renderTabList = () => {
     return (
       <div className="my-5 tab-list">
         <span
           onClick={() => this.displayCompleted(true)}
-          className={this.state.viewCompleted ? "active" : ""}
+          className={this.state.viewCompleted && !this.state.viewAll ? "active" : ""}
         >
-          complete
+          Complete
         </span>
         <span
           onClick={() => this.displayCompleted(false)}
-          className={this.state.viewCompleted ? "" : "active"}
+          className={!this.state.viewCompleted && !this.state.viewAll ? "active" : ""}
         >
           Incomplete
+        </span>
+        <span
+          onClick={() => this.displayAll()}
+          className={this.state.viewAll ? "active" : ""}
+        >
+          All
         </span>
       </div>
     );
   };
 
+  renderHeaders = () => {
+    return (
+      <li className="list-group-item d-flex justify-content-between align-items-center">
+        <span>
+          Task
+        </span>
+        <span>
+          Date
+        </span>
+        <span>
+          Priority
+        </span>
+        <span>
+          Options
+        </span>
+      </li>
+    )
+  }
+
   renderItems = () => {
     const { viewCompleted } = this.state;
-    const newItems = this.state.todoList.filter(
-      item => item.completed === viewCompleted
-    );
+    let newItems = []
+
+    if (!this.state.viewAll) {
+      newItems = this.state.todoList.filter(
+        item => item.completed === viewCompleted
+      )
+    } else {
+      newItems = this.state.todoList
+    }
 
     return newItems.map(item => (
       <li
@@ -70,7 +108,7 @@ class App extends Component {
       >
         <span
           className={`todo-title mr-2 ${
-            this.state.viewCompleted ? "completed-todo" : ""
+            item.completed ? "completed-todo" : ""
           }`}
           title={item.description}
         >
@@ -153,9 +191,13 @@ class App extends Component {
                 </button>
               </div>
               {this.renderTabList()}
-              <ul className="list-group list-group-flush">
-                {this.renderItems()}
-              </ul>
+              {/* {this.renderHeaders()} */}
+              <div>
+                <ul className="list-group list-group-flush">
+                  {this.renderHeaders()}  
+                  {this.renderItems()}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
